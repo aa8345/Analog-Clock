@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANALOG CLOCK</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bods">
+    <div class="outbox">
+      <div class="box" data-tilt
+        
+        data-tilt-scale="1.1">
+        <div class="clock">
+          <div class="hour">
+            <div class="hr" id="hr"></div>
+          </div>
+          <div class="minute">
+            <div class="min" id="min"></div>
+          </div>
+          <div class="second">
+            <div class="sec" id="sec"></div>
+          </div>
+        </div>
+      </div>
+      <div class="Day" data-tilt
+        data-tilt-glare
+        data-tilt-max-glare="0.8"
+        data-tilt-scale="1.1"></div>
+      <div class="audio">
+        <iframe
+          src="bird singing SoundEffectsFactory.mp3"
+          allow="autoplay"
+          style="display: none"
+          id="iframeAudio"
+        >
+        </iframe>
+       
+      </div>
+    </div>
+    <script>
+      const deg = 6;
+      const h = document.querySelector(".hr");
+      const m = document.querySelector(".min");
+      const s = document.querySelector(".sec");
+      const days = document.querySelector(".Day");
+      const iframe = document.querySelector("#iframeaudio");
+      
+      setInterval(() => {
+        let d = new Date();
+        let hh = new Date().getHours() * 30;
+        let mm = new Date().getMinutes() * 6;
+        let ss = new Date().getSeconds() * 6;
+        let da = new Date().getDate();
+        let day = new Date().getDay();
+        let year = new Date().getFullYear();
+       
+        let dayarr = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        h.style.transform = `rotateZ(${hh + mm / 12}deg)`;
+        m.style.transform = `rotateZ(${mm}deg)`;
+        s.style.transform = `rotateZ(${ss}deg)`;
+        days.innerHTML = `${da},${dayarr[day]},${hh / 30}:${mm / 6}:${
+          ss / 6
+        },${year}`;
+   
+       
+      });
+      const bod = document.querySelector(".bods");
+      let ho = 0;
+      setInterval(() => {
+        date = new Date();
+        ho = date.getHours();
+        if (ho >= 16 || ho <= 5) {
+          bod.classList.add("body-night");
+          bod.classList.remove("bods");
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+  </body>
+</html>
