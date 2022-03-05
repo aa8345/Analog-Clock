@@ -1,1 +1,1 @@
-https://github.com/aa8345/Analog-Clock.git
+https://aa8345.github.io/Analog-Clock/
